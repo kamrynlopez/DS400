@@ -101,17 +101,6 @@ df %>%
 
 ```
 
-```{r}
-likelihood_old_given_diabetes <- 0.96
-
-nhanes_data %>%
-  tabyl(age_bracket)
-```
-
-```{r}
-probability_old <- 0.53
-```
-
 2.  Determine the likelihood of eating tuna and having diabetes
     -   L(B\|A)
 
@@ -132,14 +121,10 @@ probability_consumes_ahi <- 0.36
     -   P(B\|A)
 
 ```{r}
+## | = given 
+##P = probability 
 (probability_has_diabetes * probability_consumes_ahi_given_diabetes) / probability_consumes_ahi
 
-```
-
-```{r}
-(probability_has_diabetes + likelihood_old_given_diabetes) / probability_old
-
-##0.2354717
 ```
 
 **Diabetes & AGE**
@@ -157,7 +142,37 @@ nhanes_data <- left_join(df, demographics, by = "SEQN")
 
 ```{r}
 nhanes_data <- nhanes_data %>%
-  mutate
-(age_bracket =ifelse(RIDAGEYR > 40, "Old", "young"))
+  mutate(age_bracket =ifelse(RIDAGEYR > 40, "Old", "young"))
 
+```
+
+P(B\|A)
+
+-   Probability that someone has diabetes given that they are over 40
+
+-   
+
+```{r}
+nhanes_data %>%
+  tabyl(age_bracket)
+```
+
+```{r}
+##P(A)
+probability_old <- .53
+```
+
+```{r}
+##P(A|B)
+nhanes_data %>%
+  tabyl(age_bracket, DIQ010) %>%
+  adorn_percentages("col")
+```
+
+```{r}
+probability_old_given_diabetes <- .96
+```
+
+```{r}
+(probability_has_diabetes * probability_old_given_diabetes) / probability_old
 ```
