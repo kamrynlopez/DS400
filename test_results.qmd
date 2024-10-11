@@ -125,6 +125,8 @@ probabilty_positive_test_result <- 0.0112
 embed_url("https://www.youtube.com/watch?v=R13BD8qKeTg")
 ```
 
+thoughts on 2nd positive tests
+
 #### What about two positive test results?
 
 $$
@@ -258,3 +260,15 @@ stacked <- ggplot(patients_updated_longer, aes(x = result, fill = has_disease)) 
   facet_wrap(~test)
 ggplotly(stacked)
 ```
+
+assignment 2
+
+With each piece of evidence e would get more accurate
+
+testing positive with a disease, what about a second opinion
+
+and if its positive again
+
+put in the posterior probability of having the disease P(H)
+
+Test the problem again
